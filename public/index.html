@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events & Rentals .io — Party Rentals, Bounce Houses, Popcorn Carts</title>
+<meta name="description" content="Family-friendly party rentals: bounce houses, inflatable movie screens, popcorn & cotton candy carts, water slides. Book your event in minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎪%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Events and Rentals dot io home">
+    <svg viewBox="0 0 240 44" width="180" height="34" aria-hidden="true">
+      <defs>
+        <linearGradient id="lg" x1="0" x2="1">
+          <stop offset="0" stop-color="#E63946"/>
+          <stop offset=".5" stop-color="#FFD60A"/>
+          <stop offset="1" stop-color="#2A6FDB"/>
+        </linearGradient>
+      </defs>
+      <text x="0" y="30" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="#1a1a2e">Events&nbsp;&amp;&nbsp;Rentals</text>
+      <text x="176" y="30" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="url(#lg)">.io</text>
+      <circle class="logo-dot" cx="181.5" cy="14" r="4.2" fill="#E63946"/>
+    </svg>
+  </a>
+  <nav class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="tel:+14699942172" class="btn btn-cta">
+    <span class="btn-emoji">📞</span> (469) 994-2172
+  </a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg-pattern" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-b"></span>
+        Family-owned · Fully insured · 5★ rated
+      </div>
+      <h1 class="hero-title">
+        Let's <span class="word-bounce">bounce</span>,<br>
+        <span class="stroke">pop</span> &amp; <span class="wiggle">party!</span>
+      </h1>
+      <p class="hero-sub">
+        Bounce houses, popcorn carts, inflatable movie screens and every-
+        thing else you need to throw the birthday, block party or backyard
+        bash the kids will talk about for years.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Book your date →</a>
+        <a href="#services" class="btn btn-ghost">See rentals</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>1,200+</b><span>happy parties</span></div>
+        <div><b>15 min</b><span>quote turnaround</span></div>
+        <div><b>25 mi</b><span>free delivery</span></div>
+      </div>
+    </div>
+
+    <div class="hero-3d">
+      <canvas id="three-canvas"></canvas>
+      <div class="hero-3d-hint">✨ drag to spin</div>
+      <div class="float-badge fb1">🎈</div>
+      <div class="float-badge fb2">🍿</div>
+      <div class="float-badge fb3">🎉</div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>★ Birthdays</span><span>★ Block parties</span><span>★ Church events</span><span>★ School carnivals</span><span>★ Weddings</span><span>★ Corporate picnics</span><span>★ Grad parties</span>
+      <span>★ Birthdays</span><span>★ Block parties</span><span>★ Church events</span><span>★ School carnivals</span><span>★ Weddings</span><span>★ Corporate picnics</span><span>★ Grad parties</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="section-head">
+    <div class="kicker"><span class="kicker-line"></span>What we rent</div>
+    <h2>Everything for an <em>unforgettable</em> event.</h2>
+    <p>Pick, mix, and bundle. We deliver, set up, and pack up — you just show up and party.</p>
+  </div>
+
+  <div class="services-grid" id="servicesGrid">
+    <!-- cards injected by JS -->
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how" id="how">
+  <div class="section-head light">
+    <div class="kicker"><span class="kicker-line"></span>How it works</div>
+    <h2>Three steps to party mode.</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-illus">
+        <svg viewBox="0 0 120 120"><rect x="15" y="25" width="90" height="80" rx="8" fill="#fff" stroke="#1a1a2e" stroke-width="3"/><rect x="15" y="25" width="90" height="20" fill="#E63946"/><line x1="35" y1="15" x2="35" y2="35" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/><line x1="85" y1="15" x2="85" y2="35" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/><circle cx="45" cy="65" r="4" fill="#FFD60A"/><circle cx="60" cy="65" r="4" fill="#2A6FDB"/><circle cx="75" cy="65" r="4" fill="#E63946"/><circle cx="60" cy="85" r="6" fill="#2A6FDB"/></svg>
+      </div>
+      <h3>Pick your date</h3>
+      <p>Tell us when and where. Weekends fill fast — book 2+ weeks out for the best pick.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-illus">
+        <svg viewBox="0 0 120 120"><rect x="20" y="30" width="80" height="75" rx="6" fill="#FFD60A" stroke="#1a1a2e" stroke-width="3"/><path d="M20 50 L60 25 L100 50" fill="none" stroke="#1a1a2e" stroke-width="3"/><rect x="35" y="60" width="18" height="18" rx="3" fill="#E63946"/><rect x="60" y="60" width="18" height="18" rx="3" fill="#2A6FDB"/><rect x="35" y="82" width="18" height="18" rx="3" fill="#2A6FDB"/><rect x="60" y="82" width="18" height="18" rx="3" fill="#E63946"/></svg>
+      </div>
+      <h3>Choose your rentals</h3>
+      <p>Bounce house? Add a popcorn cart. Movie night? Grab the 20-ft screen. Mix &amp; match freely.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-illus">
+        <svg viewBox="0 0 120 120"><rect x="10" y="55" width="70" height="35" rx="4" fill="#2A6FDB" stroke="#1a1a2e" stroke-width="3"/><rect x="75" y="45" width="35" height="45" rx="4" fill="#E63946" stroke="#1a1a2e" stroke-width="3"/><circle cx="30" cy="95" r="10" fill="#1a1a2e"/><circle cx="30" cy="95" r="4" fill="#fff"/><circle cx="90" cy="95" r="10" fill="#1a1a2e"/><circle cx="90" cy="95" r="4" fill="#fff"/><path d="M85 55 L100 55 L100 70 L85 70 Z" fill="#FFD60A"/></svg>
+      </div>
+      <h3>We deliver &amp; set up</h3>
+      <p>Our crew arrives on time, sets everything up safely, and picks it all up after. Zero stress.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="section-head">
+    <div class="kicker"><span class="kicker-line"></span>Recent parties</div>
+    <h2>See the smiles.</h2>
+    <p>A few moments from events we've powered. Yours could be next.</p>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-illus">
+      <div class="polaroid p1">
+        <div class="ph ph-fam"></div>
+        <span>The crew, 2024</span>
+      </div>
+      <div class="polaroid p2">
+        <div class="ph ph-truck"></div>
+        <span>Delivery day</span>
+      </div>
+      <div class="sticker">🎪<span>since<br>2018</span></div>
+    </div>
+    <div class="about-copy">
+      <div class="kicker"><span class="kicker-line"></span>Our story</div>
+      <h2>A family business built on <em>tiny wins</em>.</h2>
+      <p>Events &amp; Rentals .io started in our driveway with a single bounce house and one very determined dad. Eight years later, we've got a warehouse full of gear, a team that treats every party like it's their own kid's birthday, and a five-star reputation earned one balloon at a time.</p>
+      <p>We're licensed, insured, and obsessive about clean equipment — because your kids deserve nothing less.</p>
+      <div class="badges">
+        <div class="badge">✓ Fully insured</div>
+        <div class="badge">✓ Sanitized between events</div>
+        <div class="badge">✓ On-time or it's free</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP / SERVICE AREA ============ -->
+<section class="map-section" id="map">
+  <div class="section-head light">
+    <div class="kicker"><span class="kicker-line"></span>Service area</div>
+    <h2>We deliver across the region.</h2>
+    <p>Free delivery within 25 miles. Farther out? We still come — just ask.</p>
+  </div>
+  <div class="map-wrap">
+    <svg class="map-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+      <!-- stylized regional map -->
+      <rect width="800" height="400" fill="#EAF3FF"/>
+      <!-- water -->
+      <path d="M0 280 Q 200 250 400 290 T 800 300 L 800 400 L 0 400 Z" fill="#B8DAF7"/>
+      <!-- roads -->
+      <path d="M50 200 Q 400 100 750 220" stroke="#fff" stroke-width="6" fill="none" stroke-dasharray="12 8"/>
+      <path d="M100 350 Q 400 220 700 350" stroke="#fff" stroke-width="4" fill="none" stroke-dasharray="8 6"/>
+      <!-- parks -->
+      <circle cx="180" cy="150" r="45" fill="#C6E8B5"/>
+      <circle cx="620" cy="180" r="55" fill="#C6E8B5"/>
+      <circle cx="380" cy="240" r="35" fill="#C6E8B5"/>
+      <!-- delivery radius -->
+      <circle cx="400" cy="200" r="180" fill="#E63946" fill-opacity="0.08" stroke="#E63946" stroke-width="2" stroke-dasharray="6 6"/>
+      <circle cx="400" cy="200" r="110" fill="#FFD60A" fill-opacity="0.15" stroke="#FFD60A" stroke-width="2" stroke-dasharray="4 4"/>
+      <!-- HQ pin -->
+      <g class="hq-pin" transform="translate(400,200)">
+        <circle r="14" fill="#E63946"/>
+        <circle r="6" fill="#fff"/>
+        <circle r="22" fill="none" stroke="#E63946" stroke-width="2" opacity="0.5"><animate attributeName="r" from="14" to="40" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.6" to="0" dur="2s" repeatCount="indefinite"/></circle>
+      </g>
+      <!-- city labels -->
+      <text x="180" y="150" text-anchor="middle" font-family="Poppins" font-size="12" font-weight="600" fill="#1a1a2e">Westside</text>
+      <text x="620" y="180" text-anchor="middle" font-family="Poppins" font-size="12" font-weight="600" fill="#1a1a2e">Eastfield</text>
+      <text x="380" y="240" text-anchor="middle" font-family="Poppins" font-size="12" font-weight="600" fill="#1a1a2e">Riverside</text>
+      <text x="400" y="180" text-anchor="middle" font-family="Bricolage Grotesque" font-size="14" font-weight="800" fill="#1a1a2e">HQ</text>
+      <!-- other pins -->
+      <circle cx="250" cy="180" r="6" fill="#2A6FDB"/>
+      <circle cx="520" cy="150" r="6" fill="#2A6FDB"/>
+      <circle cx="470" cy="260" r="6" fill="#2A6FDB"/>
+      <circle cx="330" cy="130" r="6" fill="#2A6FDB"/>
+    </svg>
+    <div class="map-legend">
+      <div><span class="lg-dot" style="background:#FFD60A"></span>Free delivery zone (10 mi)</div>
+      <div><span class="lg-dot" style="background:#E63946"></span>Standard zone (25 mi)</div>
+      <div><span class="lg-dot" style="background:#2A6FDB"></span>Recent events</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="testimonials">
+  <div class="section-head">
+    <div class="kicker"><span class="kicker-line"></span>Reviews</div>
+    <h2>Parents love us.<br>(Kids love us more.)</h2>
+  </div>
+  <div class="testi-grid">
+    <figure class="testi">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Booked the bounce house AND the popcorn cart for my daughter's 7th. They set up in 20 minutes, the crew was so friendly, and my daughter cried when they took the castle away. 10/10."</blockquote>
+      <figcaption><div class="avi" style="background:#E63946">M</div><div><b>Maria G.</b><span>Birthday · June '25</span></div></figcaption>
+    </figure>
+    <figure class="testi hi">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The inflatable movie screen was HUGE. Our whole cul-de-sac showed up for movie night. Sound quality shocked us. Already booked them for next month."</blockquote>
+      <figcaption><div class="avi" style="background:#2A6FDB">D</div><div><b>Derrick T.</b><span>Block party · July '25</span></div></figcaption>
+    </figure>
+    <figure class="testi">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Our church picnic had 200+ people. Two bounce houses, cotton candy AND snow cones, and they handled it flawlessly. Fair pricing too."</blockquote>
+      <figcaption><div class="avi" style="background:#FFD60A;color:#1a1a2e">P</div><div><b>Pastor Ellen</b><span>Community event · Aug '25</span></div></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ BOOKING / CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-copy">
+      <div class="kicker light"><span class="kicker-line"></span>Book your date</div>
+      <h2>Let's throw <em>something amazing.</em></h2>
+      <p>Pick a date, tell us what you want, and we'll send a quote back within 15 minutes during business hours.</p>
+      <div class="contact-blocks">
+        <div class="cb"><span>📞</span><div><b>(469) 994-2172</b><span>Mon–Sat, 8am–8pm</span></div></div>
+        <a class="cb cb-wa" href="https://wa.me/14699942172?text=Hi!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20party%20rental." target="_blank" rel="noopener">
+          <span class="wa-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="22" height="22"><path fill="#25D366" d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.2 7.9L.3 31.6l7.9-2.1c2.3 1.3 4.9 1.9 7.7 1.9h.1c8.6 0 15.6-7 15.6-15.6 0-4.2-1.6-8.1-4.6-11S20.2.4 16 .4z"/><path fill="#fff" d="M16 28.8c-2.5 0-4.9-.7-7.1-1.9l-.5-.3-5.1 1.3 1.4-5-.3-.5c-1.4-2.2-2.1-4.8-2.1-7.4 0-7.6 6.2-13.7 13.7-13.7 3.7 0 7.1 1.4 9.7 4s4 6 4 9.7c0 7.6-6.2 13.8-13.7 13.8zm7.5-10.3c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.3 1.5-.2.3-.5.3-.9.1-.4-.2-1.7-.6-3.3-2-1.2-1.1-2-2.4-2.3-2.8-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.7-.7-.9-.7h-.7c-.3 0-.7.1-1.1.5s-1.4 1.4-1.4 3.4c0 2 1.5 4 1.7 4.2.2.3 2.9 4.5 7.1 6.3 2.5 1.1 3.5 1.2 4.7 1 .8-.1 2.4-1 2.7-1.9.3-.9.3-1.8.2-1.9-.1-.3-.4-.4-.8-.6z"/></svg>
+          </span>
+          <div><b>Chat on WhatsApp</b><span>Fastest way — usually reply in minutes</span></div>
+          <span class="cb-arrow">→</span>
+        </a>
+        <div class="cb"><span>✉️</span><div><b>Hello@eventsrentals.io</b><span>We reply within an hour</span></div></div>
+        <div class="cb"><span>📍</span><div><b>Serving the Tri-City area</b><span>Free delivery within 25 mi</span></div></div>
+      </div>
+    </div>
+
+    <form class="booking-form" id="bookingForm" onsubmit="return handleBook(event)">
+      <div class="ff">
+        <label>Your name</label>
+        <input required name="name" type="text" placeholder="Jane Doe">
+      </div>
+      <div class="row">
+        <div class="ff">
+          <label>Phone</label>
+          <input required name="phone" type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="ff">
+          <label>Event date</label>
+          <input required name="date" type="date" id="eventDate">
+        </div>
+      </div>
+      <div class="ff">
+        <label>What do you need? <span class="hint">(pick as many as you like)</span></label>
+        <div class="chips" id="serviceChips"></div>
+      </div>
+      <div class="ff">
+        <label>Tell us about your event</label>
+        <textarea name="notes" rows="3" placeholder="~30 kids, backyard, would love the popcorn cart too!"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-big">Send my quote request 🎉</button>
+      <p class="fine">We'll never share your info. By submitting you agree to our friendly little terms.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="foot-cta">
+    <div>
+      <div class="kicker light"><span class="kicker-line"></span>Ready to party?</div>
+      <h2>Call us. Right now.<br>We're probably not busy.</h2>
+    </div>
+    <a href="tel:+14699942172" class="btn btn-yellow btn-big">📞 (469) 994-2172</a>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-logo">
+      <svg viewBox="0 0 240 44" width="180" height="34"><text x="0" y="30" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="#fff">Events&nbsp;&amp;&nbsp;Rentals</text><text x="176" y="30" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="#FFD60A">.io</text><circle cx="181.5" cy="14" r="4.2" fill="#E63946"/></svg>
+      <p>Family-owned party rentals since 2018. Licensed &amp; insured.</p>
+    </div>
+    <div class="foot-links">
+      <div><b>Rentals</b><a href="#services">Bounce houses</a><a href="#services">Water slides</a><a href="#services">Popcorn cart</a><a href="#services">Movie screens</a></div>
+      <div><b>Company</b><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a></div>
+      <div><b>Follow</b><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TikTok</a><a href="#">Google</a></div>
+    </div>
+  </div>
+  <div class="foot-legal">© 2026 Events &amp; Rentals .io — Made with 🎈 for great parties.</div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP ============ -->
+<a class="wa-fab" href="https://wa.me/14699942172?text=Hi!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20party%20rental." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.2 7.9L.3 31.6l7.9-2.1c2.3 1.3 4.9 1.9 7.7 1.9h.1c8.6 0 15.6-7 15.6-15.6 0-4.2-1.6-8.1-4.6-11S20.2.4 16 .4z"/><path fill="#25D366" d="M23.5 18.5c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.3 1.5-.2.3-.5.3-.9.1-.4-.2-1.7-.6-3.3-2-1.2-1.1-2-2.4-2.3-2.8-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.7-.7-.9-.7h-.7c-.3 0-.7.1-1.1.5s-1.4 1.4-1.4 3.4c0 2 1.5 4 1.7 4.2.2.3 2.9 4.5 7.1 6.3 2.5 1.1 3.5 1.2 4.7 1 .8-.1 2.4-1 2.7-1.9.3-.9.3-1.8.2-1.9-.1-.3-.4-.4-.8-.6z"/></svg>
+  <span class="wa-fab-label">Chat with us</span>
+  <span class="wa-fab-pulse" aria-hidden="true"></span>
+</a>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast">🎉 Quote request sent! We'll call you within 15 minutes.</div>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="/static/scene.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
