@@ -6,9 +6,9 @@
 - **Design Source**: Built from a Genspark Design ("Build it") handoff — recreated pixel-for-pixel per the handoff spec.
 - **Features**:
   - Interactive 3D hero scene (Three.js) — rotating bounce house, popcorn cart with animated popping kernels, floating balloons, falling confetti. Drag to spin, auto-rotates when idle.
-  - Sticky nav with scroll-aware shadow, smooth-scroll anchor links
-  - Animated hero headline (squash-and-stretch "bounce", stroked "pop", wiggling "party!")
-  - Scrolling marquee banner of event types
+  - Sticky nav with scroll-aware shadow, smooth-scroll anchor links, and an animated winking bounce-house mascot logo (bobs, winks, flies a tiny flag)
+  - Animated hero headline (squash-and-stretch "bounce", stroked "pop", wiggling "party!") plus a tongue-in-cheek "side effects" joke badge
+  - Scrolling marquee banner of event types (with a wink-worthy "I swear it'll be a small party" line mixed in)
   - 8-card services grid with hover lift + rotate, real photographic images, pricing
   - "How it works" 3-step section on a dark background with minimal line icons
   - Bento-grid photo gallery with real event photos
@@ -44,16 +44,17 @@
 - **Real photography**: All 16 placeholder graphics replaced with original photorealistic images (8 service cards, 6 gallery items, 2 about-section photos) stored in `public/static/img/`. Images were AI-generated (not stock photos) to avoid any competitor-branding/licensing risk, using "no people / no text / no logos" prompts (except the about-team photo, which shows the crew from behind with no visible faces).
 - **Cartoon icon removal**: Inline decorative SVG icons on service cards and gradient+emoji placeholders in the gallery/about sections were removed. The 3 "How it works" step icons were simplified to minimal single-color line icons (calendar / grid / truck) rather than full illustrative renders.
 - **Product-image disclaimer**: Small italic caption added under both the Services grid and the Gallery grid: *"Photos are for illustrative purposes only. Actual rental equipment... may vary from images shown"* — added per client's request on a call, since the images are AI-generated representations rather than photos of the client's actual physical inventory.
+- **New mascot logo + comedic copy pass**: Replaced the plain text-only wordmark with an animated custom SVG mascot (a winking, bobbing bounce-house with a tiny flapping flag) in the nav and footer; matching favicon. Added light, family-friendly humor throughout — a hero "side effects" joke badge, a 4th hero stat ("∞ dad jokes told while inflating"), an extra marquee line, a new HOA-complaint testimonial, and comedic one-liners in the footer/toast/fine-print — all without touching layout, contact info, pricing, or functionality.
 
 ## Features Not Yet Implemented
 - **Booking form backend**: `handleBook()` currently only `console.log`s the submission and shows a toast — needs to be wired to a real endpoint (e.g. Formspree, a Hono API route + email service, or a D1-backed table) before going live.
 - **Client's own equipment photos**: Current images are AI-generated stand-ins (hence the disclaimer). Swap in the client's actual product/event photos whenever available for a fully accurate representation.
-- **Favicon**: Currently an inline 🎪 emoji data-URI; replace with a real brand icon set (16/32/180/512px) once finalized.
+- **Favicon**: Currently an inline SVG matching the new mascot; consider commissioning a polished brand icon set (16/32/180/512px PNG/ICO) once the client finalizes branding.
 
 ## Recommended Next Steps
 1. Wire the booking form to a real submission target (Cloudflare D1 table + Hono `/api/book` route is the natural fit here, keeping everything on Cloudflare — see the `d1_databases` config commented out in `wrangler.jsonc`).
 2. Replace the AI-generated images with the client's real equipment/event photos as they become available (drop into `public/static/img/`, same filenames) — remove the disclaimer once photos are 100% accurate.
-3. Add a real favicon/social preview image.
+3. Commission a polished multi-size favicon/social preview image set based on the new mascot.
 4. Consider adding basic analytics (Cloudflare Web Analytics — no cookies, free, edge-native).
 
 ## Deployment
@@ -61,4 +62,5 @@
 - **Tech Stack**: Hono + TypeScript + vanilla Three.js/GSAP (via CDN) + hand-authored CSS (no Tailwind/build-heavy framework — matches the original design handoff's lightweight, no-build-step approach)
 - **Status**: ✅ Running locally in sandbox dev preview. Code pushed to GitHub (`Mrkhan-dev-Resumefy/celebration-event-rentals`, branch `main`). Hostinger-ready static export available as a zip for direct upload to `public_html/`.
 - **GitHub**: https://github.com/Mrkhan-dev-Resumefy/celebration-event-rentals
+- **Hostinger export**: Updated zip with the new mascot logo + humor pass, ready for direct `public_html/` upload.
 - **Last Updated**: 2026-08-28
