@@ -220,27 +220,14 @@ h3 { font-size: 1.35rem; letter-spacing: -.01em; }
   font-size: 1.15rem;
   color: var(--ink-soft);
   max-width: 32ch;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 @media (max-width: 960px) { .hero-sub { margin-left: auto; margin-right: auto; } }
-.hero-joke {
-  display: inline-block;
-  font-size: .82rem;
-  font-style: italic;
-  color: var(--ink-soft);
-  background: rgba(255,214,10,.35);
-  border: 1px dashed var(--ink);
-  border-radius: 999px;
-  padding: .4rem .9rem;
-  max-width: 34ch;
-  margin-bottom: 1.5rem;
-}
-@media (max-width: 960px) { .hero-joke { max-width: none; } }
 
 .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
 
 .hero-stats {
-  display: flex; gap: 2rem; flex-wrap: wrap;
+  display: flex; gap: 2.5rem;
   padding-top: 1.5rem;
   border-top: 1px dashed var(--line);
 }
