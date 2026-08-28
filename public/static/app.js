@@ -6,8 +6,7 @@ const SERVICES = [
     desc: "Classic castles, princess themes, sports arenas. Sizes for 5 to 15 kids.",
     price: "$149",
     per: "per day",
-    bg: "sv-red",
-    icon: `<svg viewBox="0 0 100 100"><rect x="15" y="35" width="70" height="50" rx="6" fill="#E63946" stroke="#1a1a2e" stroke-width="3"/><path d="M15 55 L85 55" stroke="#fff" stroke-width="3"/><path d="M15 25 Q 50 5, 85 25 L 85 40 L 15 40 Z" fill="#FFD60A" stroke="#1a1a2e" stroke-width="3"/><path d="M25 40 L25 25 M40 40 L40 20 M55 40 L55 20 M70 40 L70 25" stroke="#1a1a2e" stroke-width="2"/><rect x="40" y="60" width="20" height="25" fill="#2A6FDB" stroke="#1a1a2e" stroke-width="3"/><path d="M50 15 L50 5" stroke="#1a1a2e" stroke-width="2"/><polygon points="50,5 58,8 50,10" fill="#E63946"/></svg>`
+    img: "/static/img/svc-bounce-house.jpg"
   },
   {
     name: "Water Slides",
@@ -15,8 +14,7 @@ const SERVICES = [
     desc: "Splash-friendly slides from 12ft to 22ft. Full pool at the bottom.",
     price: "$189",
     per: "per day",
-    bg: "sv-blue",
-    icon: `<svg viewBox="0 0 100 100"><path d="M20 30 Q 30 20, 45 30 L 55 70 Q 60 85, 75 85 L 90 85" fill="none" stroke="#2A6FDB" stroke-width="8" stroke-linecap="round"/><path d="M20 30 Q 30 20, 45 30 L 55 70 Q 60 85, 75 85 L 90 85" fill="none" stroke="#7FB0FF" stroke-width="4" stroke-linecap="round"/><ellipse cx="75" cy="88" rx="15" ry="4" fill="#2A6FDB" opacity="0.5"/><circle cx="30" cy="22" r="3" fill="#FFD60A"/><circle cx="40" cy="18" r="2" fill="#fff"/></svg>`
+    img: "/static/img/svc-water-slide.jpg"
   },
   {
     name: "Popcorn Cart",
@@ -24,8 +22,7 @@ const SERVICES = [
     desc: "Vintage red cart with real kettle popcorn. Serves 50–100 guests.",
     price: "$99",
     per: "per event",
-    bg: "sv-red",
-    icon: `<svg viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" fill="#E63946" stroke="#1a1a2e" stroke-width="3"/><line x1="30" y1="35" x2="30" y2="65" stroke="#fff" stroke-width="2"/><line x1="40" y1="35" x2="40" y2="65" stroke="#fff" stroke-width="2"/><line x1="60" y1="35" x2="60" y2="65" stroke="#fff" stroke-width="2"/><line x1="70" y1="35" x2="70" y2="65" stroke="#fff" stroke-width="2"/><rect x="27" y="20" width="46" height="18" fill="rgba(255,255,255,0.4)" stroke="#1a1a2e" stroke-width="2"/><circle cx="35" cy="27" r="3" fill="#FFF3B0"/><circle cx="45" cy="24" r="3" fill="#FFF3B0"/><circle cx="55" cy="27" r="3" fill="#FFF3B0"/><circle cx="65" cy="24" r="3" fill="#FFF3B0"/><polygon points="25,20 75,20 65,10 35,10" fill="#FFD60A" stroke="#1a1a2e" stroke-width="2"/><circle cx="35" cy="72" r="6" fill="#1a1a2e"/><circle cx="65" cy="72" r="6" fill="#1a1a2e"/></svg>`
+    img: "/static/img/svc-popcorn-cart.jpg"
   },
   {
     name: "Cotton Candy",
@@ -33,8 +30,7 @@ const SERVICES = [
     desc: "Fresh spun pink & blue cotton candy on demand. Includes attendant.",
     price: "$119",
     per: "per event",
-    bg: "sv-mix",
-    icon: `<svg viewBox="0 0 100 100"><rect x="45" y="45" width="10" height="40" fill="#8B5A2B"/><ellipse cx="50" cy="35" rx="30" ry="25" fill="#FFB3D9"/><ellipse cx="35" cy="30" rx="12" ry="10" fill="#FFC9E3"/><ellipse cx="60" cy="25" rx="10" ry="8" fill="#FFC9E3"/><ellipse cx="68" cy="40" rx="8" ry="7" fill="#B3E0FF"/><ellipse cx="30" cy="45" rx="9" ry="7" fill="#B3E0FF"/><circle cx="42" cy="35" r="2" fill="#fff"/><circle cx="55" cy="32" r="2" fill="#fff"/></svg>`
+    img: "/static/img/svc-cotton-candy.jpg"
   },
   {
     name: "Inflatable Movie Screen",
@@ -42,8 +38,7 @@ const SERVICES = [
     desc: "20-ft screen + HD projector + speakers. Perfect for movie nights.",
     price: "$249",
     per: "per night",
-    bg: "sv-cream",
-    icon: `<svg viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="50" rx="4" fill="#1a1a2e" stroke="#FFD60A" stroke-width="3"/><rect x="20" y="20" width="60" height="40" fill="#2A6FDB"/><polygon points="45,30 45,50 60,40" fill="#FFD60A"/><rect x="30" y="65" width="8" height="20" fill="#1a1a2e"/><rect x="62" y="65" width="8" height="20" fill="#1a1a2e"/><rect x="15" y="80" width="70" height="6" fill="#8B5A2B"/></svg>`
+    img: "/static/img/svc-movie-screen.jpg"
   },
   {
     name: "Snow Cones",
@@ -51,8 +46,7 @@ const SERVICES = [
     desc: "10+ syrup flavors. Machine + supplies for up to 100 servings.",
     price: "$89",
     per: "per event",
-    bg: "sv-blue",
-    icon: `<svg viewBox="0 0 100 100"><path d="M35 40 L65 40 L50 85 Z" fill="#F4D19B" stroke="#1a1a2e" stroke-width="3"/><path d="M35 40 L65 40 L60 55 L40 55 Z" fill="#E8B979"/><ellipse cx="50" cy="40" rx="18" ry="10" fill="#7FC8FF" stroke="#1a1a2e" stroke-width="3"/><ellipse cx="43" cy="34" rx="8" ry="6" fill="#B3E0FF"/><ellipse cx="55" cy="32" rx="6" ry="4" fill="#FFB3D9"/><path d="M50 25 Q 55 20, 60 25" stroke="#E63946" stroke-width="2" fill="none"/><circle cx="55" cy="35" r="2" fill="#fff"/></svg>`
+    img: "/static/img/svc-snow-cones.jpg"
   },
   {
     name: "Tables & Chairs",
@@ -60,8 +54,7 @@ const SERVICES = [
     desc: "6-ft folding tables, kids and adult chairs. White or classic wood.",
     price: "$8",
     per: "per chair",
-    bg: "sv-cream",
-    icon: `<svg viewBox="0 0 100 100"><rect x="15" y="35" width="70" height="8" fill="#FFD60A" stroke="#1a1a2e" stroke-width="3"/><rect x="20" y="43" width="6" height="30" fill="#1a1a2e"/><rect x="74" y="43" width="6" height="30" fill="#1a1a2e"/><rect x="60" y="55" width="20" height="4" fill="#E63946" stroke="#1a1a2e" stroke-width="2"/><rect x="60" y="55" width="4" height="25" fill="#1a1a2e"/><rect x="76" y="55" width="4" height="25" fill="#1a1a2e"/><rect x="60" y="45" width="20" height="12" fill="none" stroke="#1a1a2e" stroke-width="2"/></svg>`
+    img: "/static/img/svc-tables-chairs.jpg"
   },
   {
     name: "Event Tents",
@@ -69,8 +62,7 @@ const SERVICES = [
     desc: "10×10 to 20×40 canopies with sidewalls. Rain or shine, we've got you.",
     price: "$179",
     per: "per day",
-    bg: "sv-yellow",
-    icon: `<svg viewBox="0 0 100 100"><polygon points="15,45 50,15 85,45 85,50 15,50" fill="#E63946" stroke="#1a1a2e" stroke-width="3"/><polygon points="25,45 50,25 75,45 65,45 50,32 35,45" fill="#fff" stroke="#1a1a2e" stroke-width="2"/><rect x="18" y="50" width="4" height="35" fill="#1a1a2e"/><rect x="78" y="50" width="4" height="35" fill="#1a1a2e"/><rect x="15" y="83" width="70" height="4" fill="#8B5A2B"/><path d="M40 60 L 60 60" stroke="#FFD60A" stroke-width="2"/></svg>`
+    img: "/static/img/svc-event-tents.jpg"
   }
 ];
 
@@ -79,7 +71,7 @@ const grid = document.getElementById('servicesGrid');
 if (grid) {
   grid.innerHTML = SERVICES.map((s, i) => `
     <article class="service" style="animation-delay:${i * 60}ms">
-      <div class="service-visual ${s.bg}">${s.icon}</div>
+      <div class="service-visual"><img src="${s.img}" alt="${s.name}" loading="lazy"></div>
       <span class="service-tag">${s.tag}</span>
       <h3>${s.name}</h3>
       <p>${s.desc}</p>
@@ -93,18 +85,18 @@ if (grid) {
 
 // ========== GALLERY ==========
 const GALLERY = [
-  { c: "g1", ph: "ph-1", emoji: "🎂", label: "Ana's 6th birthday" },
-  { c: "g2", ph: "ph-2", emoji: "🎬", label: "Backyard movie night" },
-  { c: "g3", ph: "ph-3", emoji: "🍿", label: "Church picnic" },
-  { c: "g4", ph: "ph-4", emoji: "🎪", label: "School carnival" },
-  { c: "g5", ph: "ph-5", emoji: "🏰", label: "Twins' 5th party" },
-  { c: "g6", ph: "ph-6", emoji: "💦", label: "Summer splash bash" }
+  { c: "g1", img: "/static/img/gal-1-birthday.jpg", label: "Ana's 6th birthday" },
+  { c: "g2", img: "/static/img/gal-2-movie-night.jpg", label: "Backyard movie night" },
+  { c: "g3", img: "/static/img/gal-3-picnic.jpg", label: "Church picnic" },
+  { c: "g4", img: "/static/img/gal-4-carnival.jpg", label: "School carnival" },
+  { c: "g5", img: "/static/img/gal-5-twins.jpg", label: "Twins' 5th party" },
+  { c: "g6", img: "/static/img/gal-6-splash.jpg", label: "Summer splash bash" }
 ];
 const gg = document.getElementById('galleryGrid');
 if (gg) {
   gg.innerHTML = GALLERY.map((g, i) => `
     <div class="gitem ${g.c}" data-label="${g.label}" style="animation-delay:${i * 80}ms">
-      <div class="ph ${g.ph}" data-emoji="${g.emoji}"></div>
+      <img src="${g.img}" alt="${g.label}" loading="lazy">
     </div>
   `).join('');
 }
