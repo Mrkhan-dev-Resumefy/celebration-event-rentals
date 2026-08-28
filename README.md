@@ -9,10 +9,11 @@
   - Sticky nav with scroll-aware shadow, smooth-scroll anchor links
   - Animated hero headline (squash-and-stretch "bounce", stroked "pop", wiggling "party!")
   - Scrolling marquee banner of event types
-  - 8-card services grid with hover lift + rotate, inline SVG icons, pricing
-  - "How it works" 3-step section on a dark background
-  - Bento-grid photo gallery (placeholder gradients + emoji, ready to swap for real photos)
-  - About section with polaroid-style photo frames and a spinning "since 2018" sticker
+  - 8-card services grid with hover lift + rotate, real photographic images, pricing
+  - "How it works" 3-step section on a dark background with minimal line icons
+  - Bento-grid photo gallery with real event photos
+  - About section with polaroid-style real team/van photos and a spinning "since 2018" sticker
+  - Small disclaimer captions under Services and Gallery noting actual rental equipment may vary from images shown
   - Custom inline SVG service-area map with animated HQ pin pulse and delivery-radius rings
   - Testimonials grid
   - Red booking/contact section: phone, WhatsApp (prefilled message), email, address cards + a quote-request form with multi-select service chips
@@ -40,20 +41,24 @@
 - Three.js hero scene ported verbatim (`scene.js`) — drag-to-rotate, auto-rotate, popcorn/balloon/confetti/flag animations
 - Served via Hono on Cloudflare Pages: `index.html` returned as a static-string response from a Hono route, static JS/CSS served from `/static/*` via `hono/cloudflare-workers` `serveStatic`
 - Real contact info baked in: phone `(469) 994-2172`, WhatsApp `+1 469 994 2172`, email `Hello@eventsrentals.io`
+- **Real photography**: All 16 placeholder graphics replaced with original photorealistic images (8 service cards, 6 gallery items, 2 about-section photos) stored in `public/static/img/`. Images were AI-generated (not stock photos) to avoid any competitor-branding/licensing risk, using "no people / no text / no logos" prompts (except the about-team photo, which shows the crew from behind with no visible faces).
+- **Cartoon icon removal**: Inline decorative SVG icons on service cards and gradient+emoji placeholders in the gallery/about sections were removed. The 3 "How it works" step icons were simplified to minimal single-color line icons (calendar / grid / truck) rather than full illustrative renders.
+- **Product-image disclaimer**: Small italic caption added under both the Services grid and the Gallery grid: *"Photos are for illustrative purposes only. Actual rental equipment... may vary from images shown"* — added per client's request on a call, since the images are AI-generated representations rather than photos of the client's actual physical inventory.
 
 ## Features Not Yet Implemented
 - **Booking form backend**: `handleBook()` currently only `console.log`s the submission and shows a toast — needs to be wired to a real endpoint (e.g. Formspree, a Hono API route + email service, or a D1-backed table) before going live.
-- **Real photography**: Gallery tiles and About polaroids are gradient + emoji placeholders — swap in real event photos when available.
+- **Client's own equipment photos**: Current images are AI-generated stand-ins (hence the disclaimer). Swap in the client's actual product/event photos whenever available for a fully accurate representation.
 - **Favicon**: Currently an inline 🎪 emoji data-URI; replace with a real brand icon set (16/32/180/512px) once finalized.
 
 ## Recommended Next Steps
 1. Wire the booking form to a real submission target (Cloudflare D1 table + Hono `/api/book` route is the natural fit here, keeping everything on Cloudflare — see the `d1_databases` config commented out in `wrangler.jsonc`).
-2. Replace gallery/about placeholder imagery with real event photos (upload to `public/static/` or use R2).
+2. Replace the AI-generated images with the client's real equipment/event photos as they become available (drop into `public/static/img/`, same filenames) — remove the disclaimer once photos are 100% accurate.
 3. Add a real favicon/social preview image.
 4. Consider adding basic analytics (Cloudflare Web Analytics — no cookies, free, edge-native).
 
 ## Deployment
 - **Platform**: Cloudflare Pages (Hono backend, static assets in `public/`)
 - **Tech Stack**: Hono + TypeScript + vanilla Three.js/GSAP (via CDN) + hand-authored CSS (no Tailwind/build-heavy framework — matches the original design handoff's lightweight, no-build-step approach)
-- **Status**: ✅ Running locally in sandbox dev preview; deploy to production pending user confirmation of Cloudflare deploy path.
+- **Status**: ✅ Running locally in sandbox dev preview. Code pushed to GitHub (`Mrkhan-dev-Resumefy/celebration-event-rentals`, branch `main`). Hostinger-ready static export available as a zip for direct upload to `public_html/`.
+- **GitHub**: https://github.com/Mrkhan-dev-Resumefy/celebration-event-rentals
 - **Last Updated**: 2026-08-28
