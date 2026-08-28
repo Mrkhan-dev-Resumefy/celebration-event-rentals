@@ -92,13 +92,36 @@ h3 { font-size: 1.35rem; letter-spacing: -.01em; }
   transition: border-color .2s, box-shadow .2s;
 }
 .nav.scrolled { border-color: var(--line); box-shadow: 0 10px 30px -20px rgba(0,0,0,.15); }
-.logo { display: inline-flex; align-items: center; }
+.logo { display: inline-flex; align-items: center; gap: .5rem; }
 .logo-dot { animation: bounce-dot 1.6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
 @keyframes bounce-dot {
   0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
   30% { transform: translateY(-6px) scaleX(.95) scaleY(1.1); }
   60% { transform: translateY(0) scaleX(1.15) scaleY(.85); }
 }
+
+/* Mascot: a tiny winking bounce-house that bobs like it's actually inflated */
+.mascot {
+  animation: mascotBob 2.4s ease-in-out infinite;
+  transform-origin: bottom center;
+  cursor: pointer;
+}
+.mascot-flag { animation: mascotFlag 1.8s ease-in-out infinite; transform-origin: 50px 6px; }
+.mascot-eyelid { animation: mascotWink 3.2s ease-in-out infinite; transform-origin: 62px 58px; }
+@keyframes mascotBob {
+  0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
+  50% { transform: translateY(-4px) scaleX(1.03) scaleY(.97); }
+}
+@keyframes mascotFlag {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+@keyframes mascotWink {
+  0%, 92%, 100% { transform: scaleY(0); }
+  95% { transform: scaleY(1); }
+}
+.logo:hover .mascot { animation-duration: .5s; }
+.mascot-foot { animation-duration: 3s; }
 .nav-links { display: flex; gap: 1.75rem; }
 .nav-links a { font-weight: 500; font-size: .95rem; position: relative; }
 .nav-links a::after {
@@ -197,14 +220,27 @@ h3 { font-size: 1.35rem; letter-spacing: -.01em; }
   font-size: 1.15rem;
   color: var(--ink-soft);
   max-width: 32ch;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 @media (max-width: 960px) { .hero-sub { margin-left: auto; margin-right: auto; } }
+.hero-joke {
+  display: inline-block;
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  background: rgba(255,214,10,.35);
+  border: 1px dashed var(--ink);
+  border-radius: 999px;
+  padding: .4rem .9rem;
+  max-width: 34ch;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 960px) { .hero-joke { max-width: none; } }
 
 .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
 
 .hero-stats {
-  display: flex; gap: 2.5rem;
+  display: flex; gap: 2rem; flex-wrap: wrap;
   padding-top: 1.5rem;
   border-top: 1px dashed var(--line);
 }
@@ -708,6 +744,7 @@ h3 { font-size: 1.35rem; letter-spacing: -.01em; }
   .foot-bottom { grid-template-columns: 1fr; }
   .foot-cta { flex-direction: column; align-items: flex-start; }
 }
+.foot-logo-row { display: inline-flex; align-items: center; gap: .6rem; }
 .foot-logo p { margin-top: .75rem; opacity: .7; font-size: .95rem; max-width: 32ch; }
 .foot-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .foot-links b {
