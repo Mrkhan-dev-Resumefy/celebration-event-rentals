@@ -70,7 +70,7 @@ const SERVICES = [
 const grid = document.getElementById('servicesGrid');
 if (grid) {
   grid.innerHTML = SERVICES.map((s, i) => `
-    <article class="service" style="animation-delay:${i * 60}ms">
+    <article class="service">
       <div class="service-visual"><img src="${s.img}" alt="${s.name}" loading="lazy"></div>
       <span class="service-tag">${s.tag}</span>
       <h3>${s.name}</h3>
@@ -95,7 +95,7 @@ const GALLERY = [
 const gg = document.getElementById('galleryGrid');
 if (gg) {
   gg.innerHTML = GALLERY.map((g, i) => `
-    <div class="gitem ${g.c}" data-label="${g.label}" style="animation-delay:${i * 80}ms">
+    <div class="gitem ${g.c}" data-label="${g.label}">
       <img src="${g.img}" alt="${g.label}" loading="lazy">
     </div>
   `).join('');
@@ -135,7 +135,8 @@ function handleBook(e) {
   });
   const toast = document.getElementById('toast');
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 4000);
+  clearTimeout(toast._timer); // bug fix: prevent stacked timers on rapid re-submit
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 4000);
   form.reset();
   document.querySelectorAll('.chip.on').forEach(c => c.classList.remove('on'));
   return false;
@@ -143,52 +144,162 @@ function handleBook(e) {
 
 // ========== SCROLL EFFECTS ==========
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
+const progressBar = document.getElementById('scrollProgress');
 
-// Reveal on scroll
+let scrollTicking = false;
+function onScroll() {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  if (progressBar) {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    progressBar.style.transform = `scaleX(${Math.min(p, 1)})`;
+  }
+  scrollTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(onScroll);
+  }
+}, { passive: true });
+onScroll();
+
+// ========== COUNT-UP HERO STATS ==========
+function animateCount(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  const dur = 1400;
+  const start = performance.now();
+  function frame(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    const val = Math.round(target * eased);
+    el.textContent = val.toLocaleString() + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const statsBox = document.getElementById('heroStats');
+if (statsBox && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const statIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        statsBox.querySelectorAll('b[data-count]').forEach(animateCount);
+        statIO.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  statIO.observe(statsBox);
+}
+
+// ========== REVEAL ON SCROLL ==========
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.classList.add('in');
+      revealEl(e.target);
       io.unobserve(e.target);
     }
   });
 }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
-// mark sections & children reveal
-document.querySelectorAll('.section-head, .step, .testi, .about-copy, .about-illus, .map-wrap, .contact-copy, .booking-form, .foot-cta').forEach(el => {
-  el.classList.add('reveal');
+// Reveal + clean up afterwards so reveal transitions never interfere
+// with each element's own hover transitions (cards, forms, etc.)
+function revealEl(el) {
+  el.classList.add('in');
+  const delay = parseFloat(getComputedStyle(el).getPropertyValue('--rd')) || 0;
+  setTimeout(() => {
+    el.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-zoom', 'reveal-tilt', 'in');
+    el.style.removeProperty('--rd');
+  }, 900 + delay);
+}
+
+// Section-level reveals with direction variants for a livelier feel
+const revealMap = [
+  ['.section-head', ''],
+  ['.step', 'reveal-zoom'],
+  ['.testi', 'reveal-tilt'],
+  ['.about-illus', 'reveal-left'],
+  ['.about-copy', 'reveal-right'],
+  ['.map-wrap', 'reveal-zoom'],
+  ['.contact-copy', 'reveal-left'],
+  ['.booking-form', 'reveal-right'],
+  ['.foot-cta', ''],
+  ['.img-disclaimer', '']
+];
+revealMap.forEach(([sel, variant]) => {
+  document.querySelectorAll(sel).forEach((el, i) => {
+    el.classList.add('reveal');
+    if (variant) el.classList.add(variant);
+    el.style.setProperty('--rd', `${Math.min(i * 90, 360)}ms`);
+  });
 });
+
+// Injected cards (services + gallery): scroll-triggered stagger
+document.querySelectorAll('.service, .gitem').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.setProperty('--rd', `${(i % 4) * 80}ms`);
+});
+
 // observe ALL reveals (both pre-marked and injected)
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Safety net: force-reveal anything still hidden after 2s (guards against
-// dynamic injection + narrow viewports where IO doesn't fire as expected)
+// Safety net: force-reveal anything still hidden after 1.5s if it's already
+// in the viewport (guards against IO edge cases without breaking scroll reveals)
 setTimeout(() => {
-  document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) revealEl(el);
+  });
 }, 1500);
+// Absolute fallback: never leave content invisible
+setTimeout(() => {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(el => revealEl(el));
+  }
+}, 100);
 
-// ========== GSAP HERO 3D scroll parallax ==========
+// ========== GSAP SCROLL ANIMATIONS ==========
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
+
+  // Hero parallax
   gsap.to('.hero-3d', {
     y: -60,
-    scrollTrigger: {
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1
-    }
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
   });
   gsap.to('.hero-copy', {
     y: 40, opacity: 0.5,
-    scrollTrigger: {
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1
-    }
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+
+  // Floating hero badges drift at different speeds (parallax depth)
+  gsap.to('.fb1', { y: -80, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 } });
+  gsap.to('.fb2', { y: -40, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 } });
+  gsap.to('.fb3', { y: -110, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 } });
+
+  // Marquee speeds up slightly as you scroll past it
+  gsap.to('.marquee-track', {
+    xPercent: -8,
+    ease: 'none',
+    scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+
+  // About polaroids: gentle counter-parallax as the section scrolls
+  gsap.to('.polaroid.p1', {
+    y: -30, rotate: -8,
+    scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+  });
+  gsap.to('.polaroid.p2', {
+    y: 30, rotate: 7,
+    scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+  });
+
+  // Section headings: subtle scale-in driven by scroll position
+  gsap.utils.toArray('.section-head h2').forEach((h) => {
+    gsap.fromTo(h, { scale: 0.94 }, {
+      scale: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: h, start: 'top 95%', end: 'top 55%', scrub: 0.8 }
+    });
   });
 }

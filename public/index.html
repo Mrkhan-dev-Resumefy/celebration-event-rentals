@@ -13,9 +13,12 @@
 </head>
 <body>
 
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
-  <a href="#top" class="logo" aria-label="Events and Rentals dot io home — probably mid-wink right now">
+  <a href="#top" class="logo" aria-label="Events and Rentals dot io home">
     <svg class="mascot" viewBox="0 0 100 100" width="42" height="42" aria-hidden="true">
       <polygon points="20,38 50,10 80,38" fill="#E63946" stroke="#1a1a2e" stroke-width="3"/>
       <line x1="50" y1="10" x2="50" y2="2" stroke="#1a1a2e" stroke-width="2"/>
@@ -68,18 +71,18 @@
         <span class="stroke">pop</span> &amp; <span class="wiggle">party!</span>
       </h1>
       <p class="hero-sub">
-        Bounce houses, popcorn carts, inflatable movie screens and every-
-        thing else you need to throw the birthday, block party or backyard
-        bash the kids will talk about for years.
+        Bounce houses, popcorn carts, inflatable movie screens and everything
+        else you need to throw the birthday, block party or backyard bash
+        the kids will talk about for years.
       </p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">Book your date →</a>
         <a href="#services" class="btn btn-ghost">See rentals</a>
       </div>
-      <div class="hero-stats">
-        <div><b>1,200+</b><span>happy parties</span></div>
-        <div><b>15 min</b><span>quote turnaround</span></div>
-        <div><b>25 mi</b><span>free delivery</span></div>
+      <div class="hero-stats" id="heroStats">
+        <div><b data-count="1200" data-suffix="+">1,200+</b><span>happy parties</span></div>
+        <div><b data-count="15" data-suffix=" min">15 min</b><span>quote turnaround</span></div>
+        <div><b data-count="25" data-suffix=" mi">25 mi</b><span>free delivery</span></div>
       </div>
     </div>
 
@@ -166,13 +169,13 @@
     <div class="about-illus">
       <div class="polaroid p1">
         <img src="/static/img/about-team.jpg" alt="The Events & Rentals crew" loading="lazy">
-        <span>The crew, 2024</span>
+        <span>Our happy crew</span>
       </div>
       <div class="polaroid p2">
         <img src="/static/img/about-van.jpg" alt="Delivery van on delivery day" loading="lazy">
-        <span>Delivery day</span>
+        <span>Setup in action</span>
       </div>
-      <div class="sticker">🎪<span>since<br>2018</span></div>
+      <div class="sticker">⭐<span>5★ rated<br>by families</span></div>
     </div>
     <div class="about-copy">
       <div class="kicker"><span class="kicker-line"></span>Our story</div>
@@ -229,8 +232,8 @@
       <circle cx="330" cy="130" r="6" fill="#2A6FDB"/>
     </svg>
     <div class="map-legend">
-      <div><span class="lg-dot" style="background:#FFD60A"></span>Free delivery zone (10 mi)</div>
-      <div><span class="lg-dot" style="background:#E63946"></span>Standard zone (25 mi)</div>
+      <div><span class="lg-dot" style="background:#FFD60A"></span>Free delivery zone (25 mi)</div>
+      <div><span class="lg-dot" style="background:#E63946"></span>Extended zone (40 mi)</div>
       <div><span class="lg-dot" style="background:#2A6FDB"></span>Recent events</div>
     </div>
   </div>
@@ -246,17 +249,17 @@
     <figure class="testi">
       <div class="stars">★★★★★</div>
       <blockquote>"Booked the bounce house AND the popcorn cart for my daughter's 7th. They set up in 20 minutes, the crew was so friendly, and my daughter cried when they took the castle away. 10/10."</blockquote>
-      <figcaption><div class="avi" style="background:#E63946">M</div><div><b>Maria G.</b><span>Birthday · June '25</span></div></figcaption>
+      <figcaption><div class="avi" style="background:#E63946">M</div><div><b>Maria G.</b><span>Birthday · March 2026</span></div></figcaption>
     </figure>
     <figure class="testi hi">
       <div class="stars">★★★★★</div>
       <blockquote>"The inflatable movie screen was HUGE. Our whole cul-de-sac showed up for movie night. Sound quality shocked us. Already booked them for next month."</blockquote>
-      <figcaption><div class="avi" style="background:#2A6FDB">D</div><div><b>Derrick T.</b><span>Block party · July '25</span></div></figcaption>
+      <figcaption><div class="avi" style="background:#2A6FDB">D</div><div><b>Derrick T.</b><span>Block party · June 2026</span></div></figcaption>
     </figure>
     <figure class="testi">
       <div class="stars">★★★★★</div>
       <blockquote>"Our church picnic had 200+ people. Two bounce houses, cotton candy AND snow cones, and they handled it flawlessly. Fair pricing too."</blockquote>
-      <figcaption><div class="avi" style="background:#FFD60A;color:#1a1a2e">P</div><div><b>Pastor Ellen</b><span>Community event · Aug '25</span></div></figcaption>
+      <figcaption><div class="avi" style="background:#FFD60A;color:#1a1a2e">P</div><div><b>Pastor Ellen</b><span>Community event · August 2026</span></div></figcaption>
     </figure>
   </div>
 </section>

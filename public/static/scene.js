@@ -387,8 +387,11 @@
   let currentRotY = 0;
   let autoRotate = true;
 
+  // Bug fix: prevent page scroll hijack while dragging on touch devices
+  canvas.style.touchAction = 'none';
   canvas.addEventListener('pointerdown', (e) => {
     isDragging = true; lastX = e.clientX; autoRotate = false;
+    if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (_) {} }
   });
   window.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
@@ -404,10 +407,18 @@
   });
 
   // ---- Animate ----
+  // Perf fix: pause the render loop while the hero is off-screen
+  let heroVisible = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      heroVisible = entries[0].isIntersecting;
+    }, { threshold: 0 }).observe(container);
+  }
+
   const clock = new THREE.Clock();
   function tick() {
+    if (!heroVisible) { requestAnimationFrame(tick); return; }
     const t = clock.getElapsedTime();
-    const dt = clock.getDelta();
 
     if (autoRotate) targetRotY += 0.003;
     currentRotY += (targetRotY - currentRotY) * 0.08;

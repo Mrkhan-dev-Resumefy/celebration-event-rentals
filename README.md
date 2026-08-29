@@ -12,13 +12,13 @@
   - 8-card services grid with hover lift + rotate, real photographic images, pricing
   - "How it works" 3-step section on a dark background with minimal line icons
   - Bento-grid photo gallery with real event photos
-  - About section with polaroid-style real team/van photos and a spinning "since 2018" sticker
+  - About section with polaroid-style real team/van photos and a gently pulsing "5★ rated by families" badge (previous spinning "since 2018" ball removed per client request)
   - Small disclaimer captions under Services and Gallery noting actual rental equipment may vary from images shown
   - Custom inline SVG service-area map with animated HQ pin pulse and delivery-radius rings
-  - Testimonials grid
+  - Testimonials grid (reviews dated 2026)
   - Red booking/contact section: phone, WhatsApp (prefilled message), email, address cards + a quote-request form with multi-select service chips
   - Persistent floating WhatsApp FAB with pulse animation
-  - GSAP ScrollTrigger hero parallax; IntersectionObserver section reveal animations
+  - Rich animated scrolling: rainbow scroll-progress bar, directional scroll reveals (left/right/zoom/tilt) with stagger, count-up hero stats, multi-depth parallax on hero badges & about polaroids, scroll-scrubbed marquee & heading scale-ins (GSAP ScrollTrigger + IntersectionObserver)
   - Fully responsive (stacks below 960px/860px/640px breakpoints)
 
 ## URLs
@@ -45,6 +45,18 @@
 - **Cartoon icon removal**: Inline decorative SVG icons on service cards and gradient+emoji placeholders in the gallery/about sections were removed. The 3 "How it works" step icons were simplified to minimal single-color line icons (calendar / grid / truck) rather than full illustrative renders.
 - **Product-image disclaimer**: Small italic caption added under both the Services grid and the Gallery grid: *"Photos are for illustrative purposes only. Actual rental equipment... may vary from images shown"* — added per client's request on a call, since the images are AI-generated representations rather than photos of the client's actual physical inventory.
 - **New mascot logo**: Replaced the plain text-only wordmark with an animated custom SVG mascot (a winking, bobbing bounce-house with a tiny flapping flag) in the nav and footer; matching favicon. (An earlier pass also added light joke copy throughout the site — that copy was reverted per client request, keeping only the new logo/design.)
+- **Spinning sticker removed & re-texted**: The rotating "🎪 since 2018" circular sticker in the About section no longer spins (now a subtle scale pulse) and its text was replaced with "⭐ 5★ rated by families". Polaroid captions also refreshed ("Our happy crew" / "Setup in action").
+- **2026 reviews**: All three testimonials now dated 2026 (March / June / August 2026).
+- **Bug fixes**:
+  - Anchor links no longer hide section headings under the sticky nav (`scroll-margin-top` added)
+  - Awkward manual "every-thing" line-break in hero copy fixed
+  - Map legend zones corrected to match the stated 25-mile free-delivery radius
+  - Toast confirmation no longer flickers when the form is submitted twice quickly (timer cleanup)
+  - 3D canvas drag no longer hijacks page scrolling on touch devices (`touch-action: none` + pointer capture)
+  - Three.js render loop now pauses while the hero is off-screen (battery/CPU saver)
+  - Removed unused `dt` variable in `scene.js` and dead inline animation-delay styles in `app.js`
+  - Reveal transition classes are now cleaned up after animating, so they can never conflict with card hover transitions
+- **Animated scrolling effects**: Fixed rainbow scroll-progress bar at the top of the page; services/gallery cards now reveal on scroll with stagger; sections slide in from left/right or zoom/tilt in; hero stats count up when scrolled into view; hero floating badges drift at different parallax depths; about polaroids counter-parallax; marquee scrubs with scroll; section headings scale in as they enter the viewport. All effects respect `prefers-reduced-motion`.
 
 ## Features Not Yet Implemented
 - **Booking form backend**: `handleBook()` currently only `console.log`s the submission and shows a toast — needs to be wired to a real endpoint (e.g. Formspree, a Hono API route + email service, or a D1-backed table) before going live.
