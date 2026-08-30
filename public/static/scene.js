@@ -1,5 +1,8 @@
 // ========== HERO 3D SCENE (bounce house + popcorn cart + balloons) ==========
-(function() {
+// Built lazily: see the loader at the bottom of this file. On mobile and under
+// reduced-motion the Three.js library is never downloaded — a static poster is
+// drawn instead, which is the single biggest mobile load-time win on the page.
+window.buildHeroScene = function() {
   const canvas = document.getElementById('three-canvas');
   if (!canvas || !window.THREE) return;
 
@@ -461,4 +464,81 @@
     requestAnimationFrame(tick);
   }
   tick();
+};
+
+/* ===========================================================================
+   LAZY LOADER — mobile performance
+   ---------------------------------------------------------------------------
+   Previously Three.js (~600 KB) and GSAP (~70 KB) were blocking <script> tags
+   in the <head> path on every device. Now:
+     • mobile / reduced-motion  → nothing is downloaded, a lightweight CSS+SVG
+       poster fills the hero instead
+     • desktop                  → both libs load AFTER first paint, and only
+       once the hero is actually near the viewport
+=========================================================================== */
+(function () {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 860px)').matches;
+  const host = document.getElementById('hero3d');
+  if (!host) return;
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src; s.async = true;
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  // --- Static poster for mobile / reduced motion / failed loads ---
+  function poster() {
+    host.classList.add('hero-poster');
+    host.innerHTML = `
+      <svg viewBox="0 0 400 400" role="img" aria-label="Illustration of a bounce house, popcorn cart and balloons">
+        <ellipse cx="200" cy="330" rx="150" ry="26" fill="#B8E0A0"/>
+        <circle cx="96"  cy="96"  r="20" fill="#E63946"/><path d="M96 116v52"  stroke="#1a1a2e" stroke-width="2"/>
+        <circle cx="300" cy="72"  r="17" fill="#2A6FDB"/><path d="M300 89v56"  stroke="#1a1a2e" stroke-width="2"/>
+        <circle cx="338" cy="140" r="14" fill="#FFD60A"/><path d="M338 154v44" stroke="#1a1a2e" stroke-width="2"/>
+        <polygon points="120,168 200,110 280,168" fill="#E63946" stroke="#1a1a2e" stroke-width="5"/>
+        <rect x="118" y="168" width="164" height="132" rx="22" fill="#FFD60A" stroke="#1a1a2e" stroke-width="5"/>
+        <rect x="168" y="222" width="64" height="78" rx="10" fill="#FFFAF0" stroke="#1a1a2e" stroke-width="4"/>
+        <circle cx="152" cy="212" r="12" fill="#FFFAF0" stroke="#1a1a2e" stroke-width="4"/>
+        <circle cx="250" cy="212" r="12" fill="#FFFAF0" stroke="#1a1a2e" stroke-width="4"/>
+        <rect x="292" y="236" width="62" height="64" rx="8" fill="#E63946" stroke="#1a1a2e" stroke-width="4"/>
+        <rect x="300" y="248" width="46" height="30" rx="4" fill="#FFF8E7" stroke="#1a1a2e" stroke-width="3"/>
+        <circle cx="303" cy="308" r="10" fill="#1a1a2e"/><circle cx="343" cy="308" r="10" fill="#1a1a2e"/>
+        <circle cx="312" cy="242" r="5" fill="#FFFAF0"/><circle cx="326" cy="236" r="6" fill="#FFFAF0"/><circle cx="338" cy="243" r="5" fill="#FFFAF0"/>
+      </svg>`;
+  }
+
+  if (isMobile || reduced || !('IntersectionObserver' in window)) {
+    poster();
+    return;
+  }
+
+  // --- Desktop: load libs after first paint, when hero is near view ---
+  let started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    Promise.all([
+      loadScript('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js'),
+      loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js')
+        .then(() => loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js'))
+        .catch(() => {}) // animations are optional; never block the 3D scene
+    ]).then(() => {
+      try { window.buildHeroScene && window.buildHeroScene(); } catch (err) { console.warn('3D scene skipped:', err); poster(); }
+      try { window.initGsapAnimations && window.initGsapAnimations(); } catch (_) {}
+    }).catch(() => poster());
+  }
+
+  const heroIO = new IntersectionObserver((entries) => {
+    if (entries.some(e => e.isIntersecting)) { heroIO.disconnect(); start(); }
+  }, { rootMargin: '200px' });
+  heroIO.observe(host);
+
+  // Safety: if the observer never fires (e.g. hero hidden), still load on idle
+  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 2000));
+  idle(() => start());
 })();
